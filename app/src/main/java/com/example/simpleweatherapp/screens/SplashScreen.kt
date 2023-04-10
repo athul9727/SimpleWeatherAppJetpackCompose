@@ -61,7 +61,7 @@ fun SplashScreen(navController: NavController) {
         ) {
             Image(contentScale = ContentScale.Fit,
                 painter = painterResource(id = com.example.simpleweatherapp.R.drawable.sun), contentDescription = "sun icon", modifier = Modifier.size(95.dp))
-            Text(text = "Simple\ncom.example.simpleweatherapp.model.Weather", style = MaterialTheme.typography.h5, color = Color.LightGray)
+            Text(text = "Simple\nWeather", style = MaterialTheme.typography.h5, color = Color.LightGray)
         }
 
 
