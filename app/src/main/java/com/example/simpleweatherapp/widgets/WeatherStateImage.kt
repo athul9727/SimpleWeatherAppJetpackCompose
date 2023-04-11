@@ -15,24 +15,18 @@ import coil.request.ImageRequest
 import coil.transform.CircleCropTransformation
 
 @Composable
-fun WeatherStateImage(imageUrl:String){
+fun WeatherStateImage(imageUrl: String) {
 
     Image(
-        modifier = Modifier.size(60.dp),
-        painter = rememberAsyncImagePainter(
-            model = ImageRequest.Builder(LocalContext.current)
-                .data(imageUrl)
-                .transformations(CircleCropTransformation())
-                .crossfade(true)
-                .diskCacheKey("data_image_${imageUrl}")
-                .networkCachePolicy(CachePolicy.ENABLED)
-                .diskCachePolicy(CachePolicy.DISABLED)
-                .memoryCachePolicy(CachePolicy.ENABLED)
+        modifier = Modifier.size(60.dp), painter = rememberAsyncImagePainter(
+            model = ImageRequest.Builder(LocalContext.current).data(imageUrl)
+                .transformations(CircleCropTransformation()).crossfade(true)
+                .diskCacheKey("data_image_${imageUrl}").networkCachePolicy(CachePolicy.ENABLED)
+                .diskCachePolicy(CachePolicy.DISABLED).memoryCachePolicy(CachePolicy.ENABLED)
                 .build(),
             contentScale = ContentScale.Crop,
             filterQuality = FilterQuality.None,
-        ),
-        alignment = Alignment.BottomStart,
-        contentDescription = "image")
+        ), alignment = Alignment.BottomStart, contentDescription = "image"
+    )
 
 }

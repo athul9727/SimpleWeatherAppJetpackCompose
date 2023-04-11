@@ -11,8 +11,6 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import com.example.simpleweatherapp.R
 import com.example.simpleweatherapp.model.City
-import com.example.simpleweatherapp.model.DataList
-import com.example.simpleweatherapp.utils.formatDate
 import com.example.simpleweatherapp.utils.formatDatetime
 
 @Composable
@@ -26,26 +24,36 @@ fun WeatherRowSunset(cityData: City) {
         horizontalArrangement = Arrangement.SpaceBetween
     ) {
 
-        Row(modifier = Modifier.padding(4.dp)){
+        Row(modifier = Modifier.padding(4.dp)) {
 
-            Icon(painter = painterResource(id = R.drawable.sunrise),
+            Icon(
+                painter = painterResource(id = R.drawable.sunrise),
                 contentDescription = "sunrise icon",
-                modifier = Modifier.size(20.dp))
+                modifier = Modifier.size(20.dp)
+            )
 
-            Text(text = "${cityData.sunrise?.toLong()?.formatDatetime()}", style = MaterialTheme.typography.caption)
+            Text(
+                text = "${cityData.sunrise?.toLong()?.formatDatetime()}",
+                style = MaterialTheme.typography.caption
+            )
 
 
         }
 
 
 
-        Row(modifier = Modifier.padding(4.dp)){
+        Row(modifier = Modifier.padding(4.dp)) {
 
-            Icon(painter = painterResource(id = R.drawable.sunset),
+            Icon(
+                painter = painterResource(id = R.drawable.sunset),
                 contentDescription = "sunset icon",
-                modifier = Modifier.size(20.dp))
+                modifier = Modifier.size(20.dp)
+            )
 
-            Text(text = "${cityData.sunset?.toLong()?.formatDatetime()}", style = MaterialTheme.typography.caption)
+            Text(
+                text = "${cityData.sunset?.toLong()?.formatDatetime()}",
+                style = MaterialTheme.typography.caption
+            )
 
         }
 

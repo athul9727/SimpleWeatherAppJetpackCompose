@@ -21,10 +21,7 @@ import com.example.simpleweatherapp.model.DataList
 import com.example.simpleweatherapp.model.WeatherModel
 import com.example.simpleweatherapp.utils.formatDate
 import com.example.simpleweatherapp.utils.formatDecimals
-import com.example.simpleweatherapp.widgets.WeatherAppBar
-import com.example.simpleweatherapp.widgets.WeatherRowHumidity
-import com.example.simpleweatherapp.widgets.WeatherRowSunset
-import com.example.simpleweatherapp.widgets.WeatherStateImage
+import com.example.simpleweatherapp.widgets.*
 
 @Composable
 fun MainScreen(navController: NavController, viewModel: MainViewModel) {
@@ -52,7 +49,7 @@ fun mainScaffold(weatherData: WeatherModel, navController: NavController) {
         WeatherAppBar(
             title = "${weatherData.city?.name} ,${weatherData.city?.country}",
             navController = navController
-          )
+        )
     }) {
 
         MainContent(weatherData)
@@ -72,7 +69,8 @@ fun MainContent(weatherData: WeatherModel) {
             .padding(4.dp)
             .fillMaxWidth(),
         verticalArrangement = Arrangement.Center,
-        horizontalAlignment = Alignment.CenterHorizontally) {
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
 
         weatherItem?.dt?.toLong()?.let {
             Text(
@@ -83,24 +81,40 @@ fun MainContent(weatherData: WeatherModel) {
                 modifier = Modifier.padding(6.dp)
             )
         }
-        
+
         Surface(
             Modifier
                 .padding(4.dp)
-                .size(200.dp),
-            shape = CircleShape,
-            color = Color(0xFFFFC400)
+                .size(200.dp), shape = CircleShape, color = Color(0xFFFFC400)
         ) {
 
 
-
-            Column(verticalArrangement = Arrangement.Center,
-                horizontalAlignment = Alignment.CenterHorizontally) {
+            Column(
+                verticalArrangement = Arrangement.Center,
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
 
                 WeatherStateImage(imageUrl = imgIconUrl)
-                weatherItem?.main?.temp?.let { Text(text = it.formatDecimals()+"°", style = MaterialTheme.typography.h4) }
-                weatherItem?.weather?.get(0)?.main?.let {Text(text = it, fontStyle = FontStyle.Italic, fontSize = 18.sp)}
-                weatherItem?.weather?.get(0)?.description?.let {Text(text = it, fontStyle = FontStyle.Italic,fontSize = 16.sp)}
+                weatherItem?.main?.temp?.let {
+                    Text(
+                        text = it.formatDecimals() + "°",
+                        style = MaterialTheme.typography.h4
+                    )
+                }
+                weatherItem?.weather?.get(0)?.main?.let {
+                    Text(
+                        text = it,
+                        fontStyle = FontStyle.Italic,
+                        fontSize = 18.sp
+                    )
+                }
+                weatherItem?.weather?.get(0)?.description?.let {
+                    Text(
+                        text = it,
+                        fontStyle = FontStyle.Italic,
+                        fontSize = 16.sp
+                    )
+                }
             }
 
         }
@@ -110,29 +124,36 @@ fun MainContent(weatherData: WeatherModel) {
             Divider()
             weatherData.city?.let { WeatherRowSunset(cityData = it) }
         }
-        
-        Text(text = "This Week", style = MaterialTheme.typography.subtitle1, fontWeight = FontWeight.Bold)
 
-       Surface(modifier = Modifier
-           .fillMaxWidth()
-           .fillMaxHeight(),
-           color = Color.Transparent,
-           shape = RoundedCornerShape(size = 14.dp)
-       ) {
+        Text(
+            text = "This Week",
+            style = MaterialTheme.typography.subtitle1,
+            fontWeight = FontWeight.Bold
+        )
 
-           LazyColumn(
-               modifier = Modifier.padding(2.dp),
-               contentPadding = PaddingValues(1.dp) ){
+        Surface(
+            modifier = Modifier
+                .fillMaxWidth()
+                .fillMaxHeight(),
+            color = Color.Transparent,
+            shape = RoundedCornerShape(size = 14.dp)
+        ) {
 
-               items(items = weatherData.list!!){ weatherItem: DataList? ->
+            LazyColumn(
+                modifier = Modifier.padding(2.dp), contentPadding = PaddingValues(1.dp)
+            ) {
 
+                items(items = weatherData.list!!) { weatherItem: DataList? ->
 
+                    if (weatherItem != null) {
+                        WeatherDetailRow(weatherItem)
+                    }
 
-               }
-           }
+                }
+            }
 
         }
-        
+
     }
 }
 

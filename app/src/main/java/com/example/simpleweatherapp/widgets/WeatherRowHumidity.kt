@@ -23,32 +23,38 @@ fun WeatherRowHumidity(weather: DataList) {
         horizontalArrangement = Arrangement.SpaceBetween
     ) {
 
-        Row(modifier = Modifier.padding(4.dp)){
+        Row(modifier = Modifier.padding(4.dp)) {
 
-           Icon(painter = painterResource(id = R.drawable.humidity),
-               contentDescription = "humidity icon",
-           modifier = Modifier.size(20.dp))
+            Icon(
+                painter = painterResource(id = R.drawable.humidity),
+                contentDescription = "humidity icon",
+                modifier = Modifier.size(20.dp)
+            )
 
             Text(text = "${weather.main?.humidity}%", style = MaterialTheme.typography.caption)
 
 
         }
-        Row(modifier = Modifier.padding(4.dp)){
+        Row(modifier = Modifier.padding(4.dp)) {
 
-            Icon(painter = painterResource(id = R.drawable.pressure),
+            Icon(
+                painter = painterResource(id = R.drawable.pressure),
                 contentDescription = "pressure icon",
-                modifier = Modifier.size(20.dp))
+                modifier = Modifier.size(20.dp)
+            )
 
             Text(text = "${weather.main?.pressure} psi", style = MaterialTheme.typography.caption)
 
         }
-        Row(modifier = Modifier.padding(4.dp)){
+        Row(modifier = Modifier.padding(4.dp)) {
 
-            Icon(painter = painterResource(id = R.drawable.wind),
+            Icon(
+                painter = painterResource(id = R.drawable.wind),
                 contentDescription = "wind icon",
-                modifier = Modifier.size(20.dp))
+                modifier = Modifier.size(20.dp)
+            )
 
-            Text(text = "${weather.wind?.speed} mph" , style = MaterialTheme.typography.caption)
+            Text(text = "${weather.wind?.speed} mph", style = MaterialTheme.typography.caption)
 
         }
 

@@ -19,7 +19,7 @@ import androidx.navigation.NavController
 @Composable
 fun WeatherAppBar(
     title: String = "Title",
-    icon: ImageVector?=null,
+    icon: ImageVector? = null,
     isMainScreen: Boolean = true,
     elevation: Dp = 5.dp,
     navController: NavController,
@@ -28,39 +28,41 @@ fun WeatherAppBar(
 ) {
 
     TopAppBar(title = {
-        Text(text = title, color = MaterialTheme.colors.onSecondary, style = TextStyle(
-            fontWeight = FontWeight.Bold, fontSize = 15.sp
-        ))
+        Text(
+            text = title, color = MaterialTheme.colors.onSecondary, style = TextStyle(
+                fontWeight = FontWeight.Bold, fontSize = 15.sp
+            )
+        )
     }, actions = {
-                 if(isMainScreen){
-                       IconButton(onClick = {
+        if (isMainScreen) {
+            IconButton(onClick = {
 
-                       }) {
-                           Icon(imageVector = Icons.Default.Search , contentDescription = "search icon")
-                       }
-                     IconButton(onClick = {
+            }) {
+                Icon(imageVector = Icons.Default.Search, contentDescription = "search icon")
+            }
+            IconButton(onClick = {
 
-                     }) {
-                         Icon(imageVector = Icons.Default.MoreVert , contentDescription = "more icon")
-                     }
-                 }else{
-                     
-                 }
+            }) {
+                Icon(imageVector = Icons.Default.MoreVert, contentDescription = "more icon")
+            }
+        } else {
+
+        }
 
     }, navigationIcon = {
-        if(icon!=null){
+        if (icon != null) {
 
-                Icon(imageVector = icon , contentDescription = "icon", tint = MaterialTheme.colors.onSecondary, modifier = Modifier.clickable {
+            Icon(
+                imageVector = icon,
+                contentDescription = "icon",
+                tint = MaterialTheme.colors.onSecondary,
+                modifier = Modifier.clickable {
                     onButtonClicked.invoke()
                 })
 
 
         }
-    }, backgroundColor = Color.Transparent,
-        elevation = elevation)
+    }, backgroundColor = Color.Transparent, elevation = elevation)
 
 
-        
-
-
- }
+}
