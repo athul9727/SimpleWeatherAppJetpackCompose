@@ -19,6 +19,7 @@ import androidx.navigation.NavController
 import com.example.simpleweatherapp.data.DataOrException
 import com.example.simpleweatherapp.model.DataList
 import com.example.simpleweatherapp.model.WeatherModel
+import com.example.simpleweatherapp.navigation.WeatherScreen
 import com.example.simpleweatherapp.utils.formatDate
 import com.example.simpleweatherapp.utils.formatDecimals
 import com.example.simpleweatherapp.widgets.*
@@ -48,7 +49,10 @@ fun mainScaffold(weatherData: WeatherModel, navController: NavController) {
     Scaffold(topBar = {
         WeatherAppBar(
             title = "${weatherData.city?.name} ,${weatherData.city?.country}",
-            navController = navController
+            navController = navController,
+            onAddActionClicked = {
+                    navController.navigate(WeatherScreen.SearchScreen.name)
+            }
         )
     }) {
 
