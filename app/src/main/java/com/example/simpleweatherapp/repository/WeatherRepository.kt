@@ -2,13 +2,17 @@ package com.example.simpleweatherapp.repository
 
 import android.util.Log
 import com.example.simpleweatherapp.data.DataOrException
+import com.example.simpleweatherapp.data.Entity.FavouriteEntity
+import com.example.simpleweatherapp.data.WeatherDao
 import com.example.simpleweatherapp.model.WeatherModel
 import com.example.simpleweatherapp.network.WeatherApi
 import com.google.gson.Gson
+import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
 class WeatherRepository @Inject constructor(
-    private val weatherApi: WeatherApi
+    private val weatherApi: WeatherApi,
+    private val weatherDao: WeatherDao
 ) {
 
     suspend fun getWeather(city:String) : DataOrException<WeatherModel,Boolean,Exception> {
@@ -27,6 +31,16 @@ class WeatherRepository @Inject constructor(
 
     }
 
+
+    fun getFavourites() : Flow<List<FavouriteEntity>>  = weatherDao.getFavorites()
+
+    suspend fun getFavouriteByCity(city:String) : FavouriteEntity  = weatherDao.getFavoriteByCity(city = city)
+
+    suspend fun insertFav(fav:FavouriteEntity)  = weatherDao.insertFav(fav)
+
+    suspend fun deleteFav(fav:FavouriteEntity)  = weatherDao.removeFav(fav)
+
+    suspend fun deleteAllFavs()  = weatherDao.deleteAllFav( )
 
 
 

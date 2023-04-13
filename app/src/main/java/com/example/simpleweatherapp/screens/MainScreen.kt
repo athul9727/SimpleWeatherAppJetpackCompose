@@ -15,6 +15,7 @@ import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavArgs
 import androidx.navigation.NavController
 import com.example.simpleweatherapp.data.DataOrException
 import com.example.simpleweatherapp.model.DataList
@@ -25,11 +26,11 @@ import com.example.simpleweatherapp.utils.formatDecimals
 import com.example.simpleweatherapp.widgets.*
 
 @Composable
-fun MainScreen(navController: NavController, viewModel: MainViewModel) {
+fun MainScreen(navController: NavController, viewModel: MainViewModel,cityArgs: String) {
     val weatherData = produceState<DataOrException<WeatherModel, Boolean, Exception>>(
         initialValue = DataOrException(loading = true)
     ) {
-        value = viewModel.getWeather("calicut")
+        value = viewModel.getWeather(cityArgs)
     }.value
 
     if (weatherData.loading == true) {
