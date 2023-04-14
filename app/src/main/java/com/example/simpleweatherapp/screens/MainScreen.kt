@@ -53,7 +53,8 @@ fun mainScaffold(weatherData: WeatherModel, navController: NavController) {
             navController = navController,
             onAddActionClicked = {
                     navController.navigate(WeatherScreen.SearchScreen.name)
-            }
+            },
+
         )
     }) {
 

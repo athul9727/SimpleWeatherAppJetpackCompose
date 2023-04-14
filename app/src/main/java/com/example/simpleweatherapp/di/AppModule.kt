@@ -6,6 +6,7 @@ import com.example.simpleweatherapp.data.WeatherDao
 import com.example.simpleweatherapp.data.WeatherDatabase
 import com.example.simpleweatherapp.network.WeatherApi
 import com.example.simpleweatherapp.repository.WeatherRepository
+import com.example.simpleweatherapp.screens.FavouriteViewModel
 import com.example.simpleweatherapp.utils.Constants
 import com.google.gson.Gson
 import dagger.Module
@@ -45,10 +46,5 @@ class AppModule {
         return Room.databaseBuilder(con,WeatherDatabase::class.java,"WeatherDb").fallbackToDestructiveMigration().build()
     }
 
-    @Singleton
-    @Provides
-    fun provideRepository(weatherApi: WeatherApi,weatherDao: WeatherDao) : WeatherRepository{
-        return WeatherRepository(weatherApi,weatherDao)
-    }
 
 }

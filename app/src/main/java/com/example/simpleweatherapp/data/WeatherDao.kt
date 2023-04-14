@@ -6,7 +6,7 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import androidx.room.Update
-import com.example.simpleweatherapp.data.Entity.FavouriteEntity
+import com.example.simpleweatherapp.data.entity.FavouriteEntity
 import kotlinx.coroutines.flow.Flow
 
 @Dao
@@ -16,7 +16,7 @@ interface WeatherDao {
     fun getFavorites() : Flow<List<FavouriteEntity>>
 
     @Query("SELECT * FROM FavTable where city = :city")
-    suspend fun getFavoriteByCity(city:String) : FavouriteEntity
+    suspend fun getFavoriteByCity(city:String) : FavouriteEntity?
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertFav(fav:FavouriteEntity)

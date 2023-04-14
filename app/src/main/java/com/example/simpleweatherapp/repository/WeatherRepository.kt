@@ -2,7 +2,7 @@ package com.example.simpleweatherapp.repository
 
 import android.util.Log
 import com.example.simpleweatherapp.data.DataOrException
-import com.example.simpleweatherapp.data.Entity.FavouriteEntity
+import com.example.simpleweatherapp.data.entity.FavouriteEntity
 import com.example.simpleweatherapp.data.WeatherDao
 import com.example.simpleweatherapp.model.WeatherModel
 import com.example.simpleweatherapp.network.WeatherApi
@@ -34,9 +34,12 @@ class WeatherRepository @Inject constructor(
 
     fun getFavourites() : Flow<List<FavouriteEntity>>  = weatherDao.getFavorites()
 
-    suspend fun getFavouriteByCity(city:String) : FavouriteEntity  = weatherDao.getFavoriteByCity(city = city)
+    suspend fun getFavouriteByCity(city:String) : FavouriteEntity?  = weatherDao.getFavoriteByCity(city = city)
 
     suspend fun insertFav(fav:FavouriteEntity)  = weatherDao.insertFav(fav)
+
+    suspend fun updateFav(fav:FavouriteEntity)  = weatherDao.updateFav(fav)
+
 
     suspend fun deleteFav(fav:FavouriteEntity)  = weatherDao.removeFav(fav)
 

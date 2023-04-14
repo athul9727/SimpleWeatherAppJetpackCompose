@@ -41,7 +41,9 @@ fun SplashScreen(navController: NavController) {
 
         delay(2000L)
 
+        navController.popBackStack()
         navController.navigate(WeatherScreen.MainScreen.name+"/$defaultCity")
+
     })
 
     Surface(

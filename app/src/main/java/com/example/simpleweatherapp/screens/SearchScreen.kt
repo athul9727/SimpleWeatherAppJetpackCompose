@@ -28,7 +28,7 @@ fun SearchScreen(navController: NavController){
             isMainScreen = false,
             icon = Icons.Default.ArrowBack,
             navController = navController,
-            onAddActionClicked = {
+            onButtonClicked = {
                 navController.popBackStack()
             }
         )
