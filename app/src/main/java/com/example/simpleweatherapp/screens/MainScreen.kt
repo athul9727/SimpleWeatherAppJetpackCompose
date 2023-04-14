@@ -132,7 +132,7 @@ fun MainContent(weatherData: WeatherModel) {
         }
 
         Text(
-            text = "This Week",
+            text = "Recent",
             style = MaterialTheme.typography.subtitle1,
             fontWeight = FontWeight.Bold
         )

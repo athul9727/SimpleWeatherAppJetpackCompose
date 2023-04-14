@@ -1,9 +1,6 @@
 package com.example.simpleweatherapp.widgets
 
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
@@ -14,12 +11,15 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.text.SpanStyle
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.example.simpleweatherapp.model.DataList
 import com.example.simpleweatherapp.utils.formatDate
+import com.example.simpleweatherapp.utils.formatDatetime
 import com.example.simpleweatherapp.utils.formatDecimals
 
 
@@ -43,9 +43,17 @@ fun WeatherDetailRow(weatherData: DataList) {
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
 
-            weatherData.dt?.toLong()?.let {
-                Text(text = it.formatDate().split(",")[0], modifier = Modifier.padding(5.dp))
+            Column(modifier = Modifier.wrapContentHeight(),
+                verticalArrangement = Arrangement.Center,
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
+                weatherData.dt?.toLong()?.let {
+                    Text(text = it.formatDate().split(",")[0], modifier = Modifier.padding(5.dp), style = TextStyle(fontSize = 16.sp))
+                    Text(text = it.formatDatetime().split(",")[0], modifier = Modifier.padding(5.dp),style = TextStyle(fontSize = 14.sp))
+
+                }
             }
+
 
             WeatherStateImage(imageUrl = imgIconUrl)
 
